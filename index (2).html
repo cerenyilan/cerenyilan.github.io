@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- Bu satır, tarayıcıya "bu bir HTML5 belgesi" diyor. Her HTML dosyasının en başında olmalı. -->
+<html lang="tr">
+<!-- <html> tüm sayfayı saran ana kutudur. lang="tr" tarayıcıya sayfanın Türkçe olduğunu söyler. -->
+
+<head>
+    <!-- <head> içindekiler EKRANDA GÖRÜNMEZ. Tarayıcıya "arkaplan bilgisi" verir. -->
+    <meta charset="UTF-8">
+    <!-- Türkçe karakterlerin (ş, ğ, ı, ö, ü, ç) doğru görünmesini sağlar -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Telefon ve tablette sayfanın doğru ölçekte açılmasını sağlar (3. aşamada işimize yarayacak) -->
+    <title>Portföyüm</title>
+    <!-- Bu yazı, tarayıcı sekmesinde (tab) görünür -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Bu satır, style.css dosyasını bu sayfaya bağlar.
+         CSS ve HTML dosyaları AYNI KLASÖRDE olmalı ki bu bağlantı çalışsın. -->
+</head>
+
+<body>
+    <!-- <body> içindekiler EKRANDA GÖRÜNÜR. Sitenin gerçek içeriği burada. -->
+
+    <!-- ===== ÜST KISIM / BAŞLIK ===== -->
+    <header>
+        <button id="tema-butonu">🌙 Karanlık Mod</button>
+        <!-- Bu butona JavaScript'te "id ile" erişeceğiz -->
+        <h1>Ceren Yılan</h1>
+        <p>Kısa bir slogan: Örn. "Yeni başlayan bir geliştirici"</p>
+    </header>
+
+    <!-- ===== HAKKIMDA BÖLÜMÜ ===== -->
+    <section id="hakkimda">
+        <h2>Hakkımda</h2>
+        <p>
+            Merhaba! Ben Ceren. Şu anda web geliştirmeyi öğreniyorum ve
+            bu site benim ilk projem. İlgi alanlarım: yüzme, tiyatro,
+            girişimcilik ve mühendislik.
+        </p>
+    </section>
+
+    <!-- ===== YETENEKLER BÖLÜMÜ ===== -->
+    <section id="yetenekler">
+        <h2>Yetenekler</h2>
+        <ul>
+            <li>HTML</li>
+            <li>CSS (öğreniyorum)</li>
+            <li>JavaScript (öğreniyorum)</li>
+        </ul>
+    </section>
+
+    <!-- ===== PROJELER BÖLÜMÜ ===== -->
+    <section id="projeler">
+        <h2>Projelerim</h2>
+
+        <div class="proje-karti">
+            <h3>Proje 1: Bu Site!</h3>
+            <p>Sıfırdan HTML, CSS ve JavaScript öğrenerek yaptığım ilk portföy sitem.</p>
+        </div>
+
+        <div class="proje-karti">
+            <h3>Proje 2: (Yakında)</h3>
+            <p>Yakında yeni projelerimi ekleyeceğim.</p>
+        </div>
+    </section>
+
+    <!-- ===== İLETİŞİM BÖLÜMÜ ===== -->
+    <section id="iletisim">
+        <h2>İletişim</h2>
+        <p>Bana ulaşmak için:</p>
+        <ul>
+            <li>E-posta: <a href="mailto:cerenyilan05@gmail.com">cerenyilan05@gmail.com</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/ceren-yilan">Ceren Yılan</a></li>
+            <li>GitHub: <a href="https://github.com/cerenyilan">cerenyilan</a></li>
+        </ul>
+    </section>
+
+    <!-- ===== ALT BİLGİ ===== -->
+    <footer>
+        <p>&copy; 2026 Ceren Yılan. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- script etiketini body'nin EN SONUNA koyuyoruz.
+         Neden? Çünkü JavaScript, sayfadaki elemanlara erişmeye çalışır
+         (örn. tema-butonu). Eğer script HTML'in en başında olsaydı,
+         buton henüz yüklenmeden JS onu aramaya çalışır ve HATA verirdi.
+         En sona koymak, "önce sayfayı kur, sonra JS'i çalıştır" demektir. -->
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+/* ============================================
+   1. GENEL SIFIRLAMA (RESET)
+   Tarayıcılar bazı etiketlere kendiliğinden boşluk (margin/padding) verir.
+   Bunu sıfırlayıp, kontrolü tamamen kendimiz alıyoruz.
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* box-sizing: border-box -> bir kutunun genişliğini hesaplarken
+       padding ve border'ı da içine dahil eder. Bu, layout yaparken
+       hayatını çok kolaylaştıracak bir ayar. */
+}
+
+/* ============================================
+   2. TEMEL GÖVDE (BODY) AYARLARI
+   Site genelinde kullanılacak font, arkaplan rengi, metin rengi.
+   ============================================ */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    /* Tarayıcı önce 'Segoe UI'yi arar, yoksa Arial'a, o da yoksa
+       sistemin varsayılan sans-serif fontuna geçer. */
+    background-color: #f7f5f2;
+    /* Göz yormayan, kırık beyaz bir arkaplan */
+    color: #2b2b2b;
+    /* Saf siyah yerine yumuşak koyu gri - okuması daha rahat */
+    line-height: 1.6;
+    /* Satırlar arası boşluk - metni okunabilir yapar */
+}
+
+/* ============================================
+   3. ÜST KISIM (HEADER)
+   ============================================ */
+header {
+    background-color: #22333b;
+    /* Koyu, kurumsal bir lacivert-gri ton */
+    color: #ffffff;
+    text-align: center;
+    padding: 60px 20px;
+    /* üst-alt: 60px, sağ-sol: 20px */
+}
+
+header h1 {
+    font-size: 2.5rem;
+    /* rem = kök font boyutuna göre oran. 2.5rem ≈ 40px */
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    /* Harfler arasına hafif boşluk - başlığa şıklık katar */
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #c9d6df;
+    /* Ana beyazdan biraz farklı, daha yumuşak bir ton */
+}
+
+/* ============================================
+   4. BÖLÜMLER (SECTIONS) - GENEL KURAL
+   Bu kural TÜM <section> etiketlerine uygulanır.
+   ============================================ */
+section {
+    max-width: 800px;
+    /* İçerik çok geniş ekranlarda bile 800px'i geçmesin,
+       böylece satırlar çok uzayıp okunması zorlaşmaz. */
+    margin: 0 auto;
+    /* "margin: 0 auto" bir kutuyu YATAYDA ortalar */
+    padding: 50px 20px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #22333b;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #c9a227;
+    /* Başlığın altına ince bir çizgi - vurgu için */
+    display: inline-block;
+    /* Çizginin sadece yazının altında olmasını sağlar,
+       tüm satırın altında değil. */
+    padding-bottom: 8px;
+}
+
+/* ============================================
+   5. YETENEKLER LİSTESİ
+   ============================================ */
+#yetenekler ul {
+    list-style: none;
+    /* Liste noktalarını (•) kaldırıyoruz, kendi tasarımımızı yapacağız */
+    display: flex;
+    /* Elemanları yan yana dizer (flexbox - çok önemli bir CSS aracı) */
+    flex-wrap: wrap;
+    /* Sığmazsa alt satıra insin */
+    gap: 12px;
+    /* Elemanlar arası boşluk */
+}
+
+#yetenekler li {
+    background-color: #22333b;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    /* Kenarları yuvarlar - "etiket/badge" görünümü verir */
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   6. PROJE KARTLARI
+   ============================================ */
+.proje-karti {
+    background-color: #ffffff;
+    border: 1px solid #e0ddd6;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* transition -> özellik değişirken ANINDA değil, yumuşak geçişle olsun */
+}
+
+.proje-karti:hover {
+    /* :hover -> fare üzerine gelince ne olacağını belirler */
+    transform: translateY(-4px);
+    /* Kart hafifçe yukarı kalkar */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    /* Hafif gölge - "kart havada süzülüyor" hissi verir */
+}
+
+.proje-karti h3 {
+    color: #22333b;
+    margin-bottom: 8px;
+}
+
+/* ============================================
+   7. İLETİŞİM BÖLÜMÜ LİNKLERİ
+   ============================================ */
+#iletisim ul {
+    list-style: none;
+}
+
+#iletisim li {
+    margin-bottom: 10px;
+}
+
+#iletisim a {
+    color: #c9a227;
+    text-decoration: none;
+    /* Linkin altındaki alt çizgiyi kaldırır */
+    font-weight: 600;
+}
+
+#iletisim a:hover {
+    text-decoration: underline;
+    /* Sadece fare üzerine gelince alt çizgi görünsün */
+}
+
+/* ============================================
+   8. ALT BİLGİ (FOOTER)
+   ============================================ */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #22333b;
+    color: #c9d6df;
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* ============================================
+   9. TEMA BUTONU
+   ============================================ */
+#tema-butonu {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #c9d6df;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    /* cursor: pointer -> fare üzerine gelince "el" işaretine döner,
+       bu bir butona tıklanabileceğini gösterir */
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    transition: background-color 0.2s ease;
+}
+
+#tema-butonu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Hafif şeffaf beyaz - fare üzerine gelince belli olsun */
+}
+
+/* ============================================
+   10. KARANLIK MOD (DARK MODE)
+   JavaScript, <body> etiketine "karanlik-mod" class'ını EKLEYİP
+   ÇIKARARAK bu kuralları tetikleyecek. CSS burada sadece
+   "karanlik-mod class'ı varsa böyle görün" diyor, class'ı
+   ekleme işini JavaScript yapacak.
+   ============================================ */
+body.karanlik-mod {
+    background-color: #1a1a1a;
+    color: #e8e8e8;
+}
+
+body.karanlik-mod .proje-karti {
+    background-color: #2b2b2b;
+    border-color: #3d3d3d;
+}
+
+body.karanlik-mod .proje-karti h3 {
+    color: #e8e8e8;
+}
+
+body.karanlik-mod section h2 {
+    color: #e8e8e8;
+}
+
+/* ============================================
+   11. RESPONSIVE DESIGN (DUYARLI TASARIM)
+   Ekran 768px'den dar olduğunda (tablet ve telefon) bu kurallar devreye girer.
+   Yukarıdaki kurallar hâlâ geçerli, biz sadece BAZI özellikleri override
+   ediyoruz (üzerine yazıyoruz).
+   ============================================ */
+@media (max-width: 768px) {
+
+    header {
+        padding: 40px 15px;
+        /* Küçük ekranda dev boşluklara gerek yok, biraz daraltıyoruz */
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        /* 2.5rem çok büyüktü, telefon ekranında taşabilirdi */
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 30px 16px;
+        /* Kenar boşluklarını daralttık, içerik için daha fazla yer açtık */
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    #yetenekler ul {
+        justify-content: center;
+        /* Etiketleri ortalıyoruz - dar ekranda daha dengeli durur */
+    }
+
+    .proje-karti {
+        padding: 18px;
+        /* Kart içi boşluğu biraz azalttık, dar ekranda yer kazandırır */
+    }
+
+    .proje-karti:hover {
+        transform: none;
+        /* Telefonda "hover" (fare üzerine gelme) diye bir şey yok,
+           dokunmatik ekranda bu efekt anlamsız kalır, kapatıyoruz */
+    }
+}
+
+/* Çok küçük telefonlar için (400px altı) ekstra bir ince ayar */
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    #yetenekler li {
+        font-size: 0.85rem;
+        padding: 6px 14px;
+    }
+}
