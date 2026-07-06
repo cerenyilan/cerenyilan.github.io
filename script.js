@@ -31,6 +31,46 @@ temaButonu.addEventListener("click", function () {
 });
 
 /* ============================================
+   3. SCROLL REVEAL ANİMASYONU (YENİ KAVRAM: Intersection Observer)
+
+   Ne işe yarar? Bir elemanın "ekranda görünüp görünmediğini" takip eder.
+   Normalde bunu anlamak için sürekli "sayfa ne kadar kaydırıldı" hesabı
+   yapmak gerekirdi (yavaş ve karmaşık). IntersectionObserver bunu bizim
+   yerimize, tarayıcının kendi optimize ettiği şekilde yapar.
+
+   Mantık:
+   1. Bir "gözlemci" (observer) oluşturuyoruz, ona "bir eleman görününce
+      şu fonksiyonu çalıştır" diyoruz.
+   2. Hangi elemanları izleyeceğini söylüyoruz (class="reveal" olanlar).
+   3. Eleman ekrana girince, üzerine "gorunur" class'ı ekliyoruz -
+      CSS'teki .reveal.gorunur kuralı devreye girip yumuşak bir
+      belirme animasyonu oynatıyor.
+   ============================================ */
+
+const gozlemci = new IntersectionObserver(function (girisler) {
+    // "girisler" -> izlenen elemanlardan hangilerinin durumu değiştiği bilgisi
+
+    girisler.forEach(function (giris) {
+        // giris.isIntersecting -> true ise eleman şu an ekranda görünüyor demek
+        if (giris.isIntersecting) {
+            giris.target.classList.add("gorunur");
+            // giris.target -> ekrana giren asıl HTML elemanı
+        }
+    });
+}, {
+    threshold: 0.15
+    // threshold: 0.15 -> elemanın en az %15'i görününce tetiklen
+});
+
+const gorunecekElemanlar = document.querySelectorAll(".reveal");
+// querySelectorAll -> class="reveal" olan TÜM elemanları bir liste olarak getirir
+
+gorunecekElemanlar.forEach(function (eleman) {
+    gozlemci.observe(eleman);
+    // Her birini gözlemciye "izle bunu" diye kaydediyoruz
+});
+
+/* ============================================
    BONUS: TARAYICI HAFIZASINDA SAKLAMA (localStorage)
    Şu an, sayfayı yenilediğinde (F5) seçtiğin tema unutuluyor,
    hep aydınlık modda açılıyor. localStorage kullanarak tarayıcıya
