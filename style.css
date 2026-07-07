@@ -35,6 +35,10 @@ body {
     color: var(--renk-teal);
     text-decoration: none;
     margin-bottom: 28px;
+    padding: 10px 14px 10px 0;
+    /* padding ekleyerek dokunma alanını büyüttük - mobilde parmakla
+       basmak, fare ile tıklamaktan daha az hassas olduğu için bu
+       önemli bir erişilebilirlik pratiğidir */
 }
 
 .geri-linki:hover {
