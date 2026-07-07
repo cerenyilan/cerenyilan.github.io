@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- Bu satır, tarayıcıya "bu bir HTML5 belgesi" diyor. Her HTML dosyasının en başında olmalı. -->
+<html lang="tr">
+<!-- <html> tüm sayfayı saran ana kutudur. lang="tr" tarayıcıya sayfanın Türkçe olduğunu söyler. -->
+
+<head>
+    <!-- <head> içindekiler EKRANDA GÖRÜNMEZ. Tarayıcıya "arkaplan bilgisi" verir. -->
+    <meta charset="UTF-8">
+    <!-- Türkçe karakterlerin (ş, ğ, ı, ö, ü, ç) doğru görünmesini sağlar -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Telefon ve tablette sayfanın doğru ölçekte açılmasını sağlar (3. aşamada işimize yarayacak) -->
+    <title>Portföyüm</title>
+    <!-- Bu yazı, tarayıcı sekmesinde (tab) görünür -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Bu satır, style.css dosyasını bu sayfaya bağlar.
+         CSS ve HTML dosyaları AYNI KLASÖRDE olmalı ki bu bağlantı çalışsın. -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <!-- Google Fonts'tan 3 farklı font ailesi çekiyoruz:
+         Fraunces (başlıklar), Inter (gövde metni), JetBrains Mono (etiketler) -->
+</head>
+
+<body>
+    <!-- <body> içindekiler EKRANDA GÖRÜNÜR. Sitenin gerçek içeriği burada. -->
+
+    <!-- ===== ÜST KISIM / BAŞLIK ===== -->
+    <header>
+        <button id="tema-butonu">🌙 Karanlık Mod</button>
+        <!-- Bu butona JavaScript'te "id ile" erişeceğiz -->
+
+        <p class="eyebrow">İLK PROJE — WEB GELİŞTİRME, 2026</p>
+        <!-- "eyebrow" = başlığın üstünde duran küçük, teknik görünümlü etiket -->
+
+        <h1>Ceren Yılan</h1>
+        <p class="hero-tagline">Mühendislik disipliniyle düşünen, sahne enerjisiyle üreten bir yeni başlayan.</p>
+
+        <div class="ilgi-alanlari">
+            <!-- Kulvar çizgisi mantığı: her etiket, yüzme havuzu şeridi gibi
+                 kesikli bir çizgiyle birbirine bağlanıyor. Bu, "farklı
+                 alanlardan geçen tek bir yol" fikrini görsel olarak anlatıyor. -->
+            <span class="ilgi-etiket">Yüzme</span>
+            <span class="kulvar-cizgisi"></span>
+            <span class="ilgi-etiket">Tiyatro</span>
+            <span class="kulvar-cizgisi"></span>
+            <span class="ilgi-etiket">Girişimcilik</span>
+            <span class="kulvar-cizgisi"></span>
+            <span class="ilgi-etiket">Mühendislik</span>
+        </div>
+    </header>
+
+    <!-- ===== HAKKIMDA BÖLÜMÜ ===== -->
+    <section id="hakkimda" class="reveal">
+        <p class="section-eyebrow">TANIŞMA</p>
+        <h2>Hakkımda</h2>
+        <p>
+            Merhaba! Ben Ceren. Şu anda web geliştirmeyi öğreniyorum ve
+            bu site benim ilk projem. İlgi alanlarım: yüzme, tiyatro,
+            girişimcilik ve mühendislik.
+        </p>
+    </section>
+
+    <!-- ===== YETENEKLER BÖLÜMÜ ===== -->
+    <section id="yetenekler" class="reveal">
+        <p class="section-eyebrow">ARAÇ ÇANTASI</p>
+        <h2>Yetenekler</h2>
+        <ul>
+            <li>HTML</li>
+            <li>CSS (öğreniyorum)</li>
+            <li>JavaScript (öğreniyorum)</li>
+        </ul>
+    </section>
+
+    <!-- ===== PROJELER BÖLÜMÜ ===== -->
+    <section id="projeler" class="reveal">
+        <p class="section-eyebrow">ÇALIŞMALAR</p>
+        <h2>Projelerim</h2>
+
+        <div class="proje-karti">
+            <h3>Proje 1: Bu Site!</h3>
+            <p>Sıfırdan HTML, CSS ve JavaScript öğrenerek yaptığım ilk portföy sitem.</p>
+        </div>
+
+        <div class="proje-karti">
+            <h3>Proje 2: Yapılacaklar Listesi</h3>
+            <p>Diziler, dinamik DOM oluşturma ve olay delegasyonu kullanarak yaptığım bir to-do list uygulaması.</p>
+            <a href="projeler/todo-list/index.html" class="proje-linki">Projeyi Gör →</a>
+        </div>
+    </section>
+
+    <!-- ===== İLETİŞİM BÖLÜMÜ ===== -->
+    <section id="iletisim" class="reveal">
+        <p class="section-eyebrow">BAĞLANTI</p>
+        <h2>İletişim</h2>
+        <p>Bana ulaşmak için:</p>
+        <ul>
+            <li>E-posta: <a href="mailto:cerenyilan05@gmail.com">cerenyilan05@gmail.com</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/ceren-yilan">Ceren Yılan</a></li>
+            <li>GitHub: <a href="https://github.com/cerenyilan">cerenyilan</a></li>
+        </ul>
+    </section>
+
+    <!-- ===== ALT BİLGİ ===== -->
+    <footer>
+        <p>&copy; 2026 Ceren Yılan. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- script etiketini body'nin EN SONUNA koyuyoruz.
+         Neden? Çünkü JavaScript, sayfadaki elemanlara erişmeye çalışır
+         (örn. tema-butonu). Eğer script HTML'in en başında olsaydı,
+         buton henüz yüklenmeden JS onu aramaya çalışır ve HATA verirdi.
+         En sona koymak, "önce sayfayı kur, sonra JS'i çalıştır" demektir. -->
+
+</body>
+</html>

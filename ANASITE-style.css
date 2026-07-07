@@ -1,0 +1,409 @@
+/* ============================================
+   0. TASARIM TOKENLARI (CSS DEĞİŞKENLERİ)
+   Bu, YENİ bir CSS kavramı: "CSS Custom Properties" (değişkenler).
+   --isim: değer; şeklinde tanımlanır, sonra var(--isim) ile
+   istediğin yerde kullanılır. Faydası: rengi TEK yerden değiştirip
+   tüm siteye yayabilirsin, her yerde tek tek aramana gerek kalmaz.
+   ============================================ */
+:root {
+    /* Renk paleti */
+    --renk-lacivert: #16233f;      /* Ana koyu renk - mühendislik/ciddiyet */
+    --renk-lacivert-2: #1d2d4d;    /* Lacivertin biraz açığı - gradyanlar için */
+    --renk-kagit: #eef2f0;         /* Açık arkaplan - su/deniz köpüğü tonu */
+    --renk-metin: #1c2b3a;         /* Ana metin rengi */
+    --renk-teal: #1f7a72;          /* Ana vurgu - su, mühendislik */
+    --renk-altin: #c9a227;         /* İkincil vurgu - sahne/tiyatro ışığı */
+    --renk-gri-acik: #dfe6e3;      /* Kenarlıklar, ayraçlar için soft gri */
+
+    /* Tipografi */
+    --font-baslik: 'Fraunces', Georgia, serif;
+    --font-govde: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   1. GENEL SIFIRLAMA (RESET)
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   2. TEMEL GÖVDE (BODY) AYARLARI
+   ============================================ */
+body {
+    font-family: var(--font-govde);
+    background-color: var(--renk-kagit);
+    color: var(--renk-metin);
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Karanlık moda geçişin ANİ değil, yumuşak olmasını sağlar */
+}
+
+/* ============================================
+   3. ÜST KISIM (HEADER) - YENİ TASARIM
+   ============================================ */
+header {
+    background: linear-gradient(160deg, var(--renk-lacivert) 0%, var(--renk-lacivert-2) 100%);
+    /* linear-gradient -> tek düz renk yerine iki renk arasında yumuşak geçiş.
+       160deg, geçişin açısını belirtiyor (yukarıdan aşağıya, hafif çapraz) */
+    color: #ffffff;
+    text-align: center;
+    padding: 70px 20px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    /* ::before -> elemanın İÇİNE, görünmeyen "hayalet" bir kutu ekler.
+       Burada header'ın arkasına ince bir kılavuz-çizgisi deseni koyuyoruz,
+       mühendislik/blueprint (teknik çizim) hissi vermesi için. */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    /* Bu iki gradient, yatay ve dikey ince çizgiler oluşturup
+       ızgara (grid) kağıdı görünümü veriyor - mühendislik defteri gibi */
+    pointer-events: none;
+    /* Bu katmana tıklanamaz, sadece görsel amaçlı */
+}
+
+#tema-butonu {
+    position: relative;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 32px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#tema-butonu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.eyebrow {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--renk-altin);
+    margin-bottom: 18px;
+}
+
+header h1 {
+    position: relative;
+    font-family: var(--font-baslik);
+    font-weight: 600;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    /* clamp(min, tercih-edilen, max) -> ekran boyutuna göre otomatik
+       ölçeklenen font boyutu. Bunu manuel media query yazmadan halleder. */
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+}
+
+.hero-tagline {
+    position: relative;
+    font-size: 1.05rem;
+    color: #c9d6df;
+    max-width: 480px;
+    margin: 0 auto 36px;
+}
+
+/* --- İmza öğesi: kulvar çizgisiyle bağlanan ilgi alanı etiketleri --- */
+.ilgi-alanlari {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.ilgi-etiket {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 7px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.kulvar-cizgisi {
+    /* Yüzme havuzu kulvar şeridini simgeleyen kesikli çizgi */
+    width: 28px;
+    height: 0;
+    border-top: 2px dashed var(--renk-altin);
+    margin: 0 2px;
+}
+
+/* ============================================
+   4. BÖLÜMLER (SECTIONS) - GENEL KURAL
+   ============================================ */
+section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 20px;
+}
+
+.section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--renk-teal);
+    margin-bottom: 10px;
+}
+
+section h2 {
+    font-family: var(--font-baslik);
+    font-weight: 600;
+    font-size: 1.9rem;
+    color: var(--renk-lacivert);
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--renk-gri-acik);
+    display: inline-block;
+}
+
+section p {
+    max-width: 640px;
+}
+
+/* ============================================
+   5. SCROLL REVEAL ANİMASYONU
+   JavaScript, bir bölüm ekrana girdiğinde ".gorunur" class'ını
+   ekleyecek. Burada CSS, o class YOKKEN elemanın "gizli ve biraz
+   aşağıda" olmasını, class GELDİĞİNDE ise yumuşakça belirmesini
+   tanımlıyor. Asıl hareketi tetikleyen JS, ama nasıl görüneceğini
+   CSS söylüyor.
+   ============================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.gorunur {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   6. YETENEKLER LİSTESİ
+   ============================================ */
+#yetenekler ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#yetenekler li {
+    background-color: var(--renk-lacivert);
+    color: white;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border-radius: 6px;
+    /* Tam yuvarlak yerine hafif köşeli - "etiket" değil "modül" hissi,
+       mühendislik/teknik referansa daha uygun */
+}
+
+/* ============================================
+   7. PROJE KARTLARI
+   ============================================ */
+.proje-karti {
+    background-color: #ffffff;
+    border: 1px solid var(--renk-gri-acik);
+    border-left: 3px solid var(--renk-teal);
+    /* Sol kenarda kalın renkli çizgi - "bu bir dosya/kayıt" hissi verir */
+    border-radius: 4px;
+    padding: 26px 28px;
+    margin-bottom: 18px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
+}
+
+.proje-karti:hover {
+    transform: translateX(4px);
+    /* Yukarı değil, sağa kayma - kart bir "dosya çekmecesi" gibi açılıyor hissi */
+    box-shadow: 0 8px 24px rgba(22, 35, 63, 0.1);
+    border-left-color: var(--renk-altin);
+}
+
+.proje-karti h3 {
+    font-family: var(--font-baslik);
+    font-weight: 600;
+    color: var(--renk-lacivert);
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+}
+
+.proje-linki {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--renk-teal);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.proje-linki:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   8. İLETİŞİM BÖLÜMÜ LİNKLERİ
+   ============================================ */
+#iletisim ul {
+    list-style: none;
+}
+
+#iletisim li {
+    margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+}
+
+#iletisim a {
+    color: var(--renk-teal);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+#iletisim a:hover {
+    border-bottom-color: var(--renk-teal);
+}
+
+/* ============================================
+   9. ALT BİLGİ (FOOTER)
+   ============================================ */
+footer {
+    text-align: center;
+    padding: 32px 20px;
+    background-color: var(--renk-lacivert);
+    color: #c9d6df;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+/* ============================================
+   10. TEMA BUTONU İÇİN EK KURAL
+   (Not: temel stil yukarıda #tema-butonu içinde tanımlı, bu boşluk
+   ileride ek dark-mode-özel buton stilleri gerekirse burada durur)
+   ============================================ */
+
+/* ============================================
+   11. KARANLIK MOD (DARK MODE)
+   ============================================ */
+body.karanlik-mod {
+    background-color: #12181f;
+    color: #dfe6e3;
+}
+
+body.karanlik-mod section h2 {
+    color: #eef2f0;
+    border-bottom-color: #2a3542;
+}
+
+body.karanlik-mod .proje-karti {
+    background-color: #1a222b;
+    border-color: #2a3542;
+}
+
+body.karanlik-mod .proje-karti h3 {
+    color: #eef2f0;
+}
+
+body.karanlik-mod #yetenekler li {
+    background-color: var(--renk-teal);
+}
+
+/* ============================================
+   12. RESPONSIVE DESIGN (DUYARLI TASARIM)
+   ============================================ */
+@media (max-width: 768px) {
+
+    header {
+        padding: 50px 16px 40px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.95rem;
+    }
+
+    .ilgi-alanlari {
+        gap: 8px;
+    }
+
+    .kulvar-cizgisi {
+        display: none;
+        /* Dar ekranda kulvar çizgileri kalabalık yapar, gizliyoruz */
+    }
+
+    section {
+        padding: 44px 16px;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    #yetenekler ul {
+        justify-content: center;
+    }
+
+    .proje-karti {
+        padding: 18px 20px;
+    }
+
+    .proje-karti:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .ilgi-etiket {
+        font-size: 0.72rem;
+        padding: 6px 12px;
+    }
+}
+
+/* ============================================
+   13. ERİŞİLEBİLİRLİK: KLAVYE ODAĞI
+   Klavye ile (Tab tuşuyla) gezinen kullanıcılar için, odaklanılan
+   elemanın etrafında görünür bir çerçeve bırakıyoruz. Bunu CSS ile
+   kaldırmak yaygın bir hatadır - biz bilerek koruyoruz.
+   ============================================ */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--renk-teal);
+    outline-offset: 3px;
+}
